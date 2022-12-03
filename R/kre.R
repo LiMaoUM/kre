@@ -9,6 +9,9 @@ kernelRatioEstimation = function(pop_grid, point, max_bw, min_bw, min_pop)  {
   r <- pop_grid
   p <- point
 
+  #Set progress bar
+
+
   # Spatial join: target the raster cell with the point location
   cells <- extract(r,p,cellnumbers=T)
 
@@ -32,14 +35,21 @@ kernelRatioEstimation = function(pop_grid, point, max_bw, min_bw, min_pop)  {
   min_num <- round(min_bw * 1609 / unit) #start from
   max_num <- round(max_bw * 1609 / unit) #end at
 
+  # Set progress bar
+  pb  <- txtProgressBar(min_num, max_num, style=3)
+
   # Create the data.frame for loading the results
   records <- data.frame(col1=c(),col2=c())
 
-  rest_cells <- cells
+  rest_cells <- unique(cells[,'cells'])
 
   # Using for loop searching the bandwidth for each data point
+  message("Start calculating the bandwidth for each point of interest")
+
 
   for (i in min_num:max_num){
+
+    setTxtProgressBar(pb, i)
 
     # Number of neighborhood is radius * 2 and plus 1
     num_ber = (i*2)+1
@@ -49,7 +59,7 @@ kernelRatioEstimation = function(pop_grid, point, max_bw, min_bw, min_pop)  {
     neighber[(i+1),(i+1)] = 0
 
     # Filtering adjacent cells for the rest of target data point
-    adjacent_cell <- adjacent(r,rest_cells[,"cells"],directions=neighber)
+    adjacent_cell <- adjacent(r,rest_cells,directions=neighber)
     adjacent_cell <- cbind(adjacent_cell,r[adjacent_cell[,'to']])
     colnames(adjacent_cell)[3] <-  "value"
     row.names(adjacent_cell) <-  adjacent_cell[,"from"]
@@ -58,18 +68,19 @@ kernelRatioEstimation = function(pop_grid, point, max_bw, min_bw, min_pop)  {
     cell_sum <-  rowsum(adjacent_cell, row.names(adjacent_cell))
 
     # Filtering out the cell with enough population support at this level of bandwidth
-    met_cells <-  row.names(cell_sum[which(cell_sum[,'value']>min_pop),])
+    met_cells <-  row.names(cell_sum[which(cell_sum[,'value']>min_pop),,drop=F])
 
     # Keep the cells without meeting the criteria to next round of filtering
-    rest_cells <- rest_cells[which(cell_sum[,'value']<=min_pop),]
+    rest_cells <- as.numeric(row.names(cell_sum[cell_sum[,'value']<=min_pop,,drop=F]))
     met_cells <- cbind(met_cells,rep(i,length(met_cells)))
     colnames(met_cells) <- c("met_cells", "bw")
 
     # Record the cells met the criteria
     records <- rbind(records,met_cells)
+    i= i+1
 
     # If all cells meet the criteria before reaching out the maximum bandwidth, break the loop
-    if (length(rest_cells[,"cells"])<=0){
+    if (length(rest_cells)<=0){
       break
     }
 
