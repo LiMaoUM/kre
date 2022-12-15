@@ -15,6 +15,10 @@ kernelRatioEstimation = function(pop_grid, point, max_bw, min_bw, min_pop)  {
   # Spatial join: target the raster cell with the point location
   cells <- extract(r,p,cellnumbers=T)
 
+  # Append cell numbers to point data
+
+  p = cbind(p,cells)
+
   # Load the cell size of raster
   unit <- res(r)[1]
 
@@ -77,6 +81,7 @@ kernelRatioEstimation = function(pop_grid, point, max_bw, min_bw, min_pop)  {
 
     # Record the cells met the criteria
     records <- rbind(records,met_cells)
+
     i= i+1
 
     # If all cells meet the criteria before reaching out the maximum bandwidth, break the loop
@@ -86,6 +91,15 @@ kernelRatioEstimation = function(pop_grid, point, max_bw, min_bw, min_pop)  {
 
 
   }
+
+  # Transform the number of cells to meter
+  records$bw = as.numeric(records$bw) * unit
+
+  # Assign the adpative bandwidth to each point of interest
+  p = merge(p,records,by.x='cells',by.y='met_cells',all=T)
+
+
+
   return(records)
 
 }
