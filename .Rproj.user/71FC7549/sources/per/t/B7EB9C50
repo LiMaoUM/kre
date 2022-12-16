@@ -3,7 +3,7 @@
     "path": "~/kre/R/kre.R",
     "project_path": "R/kre.R",
     "type": "r_source",
-    "hash": "1112177415",
+    "hash": "720710510",
     "contents": "",
     "dirty": false,
     "created": 1669591314206.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "9,0",
+        "cursorPosition": "26,40",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1669606657,
+    "lastKnownWriteTime": 1671151488,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1669606657500,
+    "last_content_update": 1671151488172,
     "read_only": false,
     "read_only_alternatives": []
 }

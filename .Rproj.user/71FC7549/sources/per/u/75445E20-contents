@@ -1,0 +1,34 @@
+\name{kre-package}
+\alias{kre-package}
+\alias{kre}
+\docType{package}
+\title{
+  kre: Kernel Ratio Esimation
+}
+\description{
+  Implementation of kernel ratio estimation (or it can be refered as kernel density estimation with adpative bandwidth)
+}
+\details{
+  Instead of using a fixed bandwidth, Kernel Ratio Estimation will use an adaptive bandwidth that varies across the study area to adapt to either the event points or the background.
+}
+\author{
+  Mao Li, Chang Yan, Ping He
+  
+  Maintainer: Mao Li <maolee@umich.edu>
+}
+\references{
+  Carlos, H. A., Shi, X., Sargent, J., Tanski, S., & Berke, E. M. (2010). Density estimation and adaptive bandwidths: a primer for public health practitioners. International journal of health geographics, 9(1), 1-8.
+  
+}
+\keyword{ package }
+\seealso{
+  Optional links to other man pages
+}
+\examples{
+  library(sf)
+  library(raster)
+  poi = st_read(system.file("test/poi/Retail_Facilities.shp",package="kre"))
+  r = raster("coraster.tif")
+  output_raster = kre()
+}
+}
