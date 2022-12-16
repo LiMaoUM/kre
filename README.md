@@ -1,6 +1,7 @@
 # kre
 
-## Authors: Mao Li, Chang Yan, Ping He
+## Authors
+Mao Li, Chang Yan, Ping He
 
 ## Reference
 Carlos, H. A., Shi, X., Sargent, J., Tanski, S., & Berke, E. M. (2010). Density estimation and adaptive bandwidths: a primer for public health practitioners. International journal of health geographics, 9(1), 1-8.
