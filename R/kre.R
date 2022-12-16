@@ -12,17 +12,11 @@
 #' @return \code{\link[raster]{Raster-class}}
 #' @export
 #'
-#' @import raster sf dplyr
+#' @import raster sf dplyr methods Matrix
 #' @importFrom raster extract raster pointDistance coordinates
 #' @importFrom sf st_geometry st_union st_convex_hull st_buffer st_as_sf st_coordinates
 #' @importFrom terra res
 #' @importFrom utils txtProgressBar setTxtProgressBar
-#' @examples
-#'library(sf)
-#'library(raster)
-#'poi = st_read(system.file("test/poi/Retail_Facilities.shp",package="kre"))
-#'r = raster(system.file("test/"coraster.tif",package="kre"))
-#'output_raster = kernelRatioEstimation(r,poi,12,1,6000,1000,kernel='gaussian')
 
 kernelRatioEstimation = function(pop_grid,
                                  point,

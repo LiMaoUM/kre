@@ -17,7 +17,7 @@ TriweightKernelDensity <- function(X) {
     .Call('_kre_TriweightKernelDensity', PACKAGE = 'kre', X)
 }
 
-rcpp_hello_world <- function() {
-    .Call('_kre_rcpp_hello_world', PACKAGE = 'kre')
+EpanechnikovKernelDensity <- function(X) {
+    .Call('_kre_EpanechnikovKernelDensity', PACKAGE = 'kre', X)
 }
 

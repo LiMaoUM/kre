@@ -56,13 +56,14 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rcpp_hello_world
-List rcpp_hello_world();
-RcppExport SEXP _kre_rcpp_hello_world() {
+// EpanechnikovKernelDensity
+NumericVector EpanechnikovKernelDensity(Eigen::MappedSparseMatrix<double> X);
+RcppExport SEXP _kre_EpanechnikovKernelDensity(SEXP XSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpp_hello_world());
+    Rcpp::traits::input_parameter< Eigen::MappedSparseMatrix<double> >::type X(XSEXP);
+    rcpp_result_gen = Rcpp::wrap(EpanechnikovKernelDensity(X));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -72,7 +73,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_kre_UniformKernelDensity", (DL_FUNC) &_kre_UniformKernelDensity, 1},
     {"_kre_QuarticKernelDensity", (DL_FUNC) &_kre_QuarticKernelDensity, 1},
     {"_kre_TriweightKernelDensity", (DL_FUNC) &_kre_TriweightKernelDensity, 1},
-    {"_kre_rcpp_hello_world", (DL_FUNC) &_kre_rcpp_hello_world, 0},
+    {"_kre_EpanechnikovKernelDensity", (DL_FUNC) &_kre_EpanechnikovKernelDensity, 1},
     {NULL, NULL, 0}
 };
 

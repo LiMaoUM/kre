@@ -1,6 +1,6 @@
 // [[Rcpp::depends(RcppEigen)]]
 // [[Rcpp::depends(RcppArmadillo)]]
-// [[Rcpp::export]]
+
 #define ARMA_64BIT_WORD
 #include <RcppArmadillo.h>
 #include <RcppEigen.h>
@@ -16,6 +16,7 @@ typedef MSpMat::InnerIterator InIterMat;
 // number of columns = number of cells
 // each element of the input sparse matrix is the ratio of distance to bandwidth
 
+// [[Rcpp::export]]
 NumericVector GaussianKernelDensity(Eigen::MappedSparseMatrix<double> X){
   int ncol = X.cols();
   NumericVector ret(ncol, 0.0); //vector of size ncol filled with 0.0
@@ -31,7 +32,7 @@ NumericVector GaussianKernelDensity(Eigen::MappedSparseMatrix<double> X){
   return ret;
 }
 
-
+// [[Rcpp::export]]
 NumericVector UniformKernelDensity(Eigen::MappedSparseMatrix<double> X){
   int ncol = X.cols();
   NumericVector ret(ncol, 0.0); //vector of size ncol filled with 0.0
@@ -47,7 +48,7 @@ NumericVector UniformKernelDensity(Eigen::MappedSparseMatrix<double> X){
   return ret;
 }
 
-
+// [[Rcpp::export]]
 NumericVector QuarticKernelDensity(Eigen::MappedSparseMatrix<double> X){
   int ncol = X.cols();
   NumericVector ret(ncol, 0.0); //vector of size ncol filled with 0.0
@@ -63,7 +64,7 @@ NumericVector QuarticKernelDensity(Eigen::MappedSparseMatrix<double> X){
   return ret;
 }
 
-
+// [[Rcpp::export]]
 NumericVector TriweightKernelDensity(Eigen::MappedSparseMatrix<double> X){
   int ncol = X.cols();
   NumericVector ret(ncol, 0.0); //vector of size ncol filled with 0.0
@@ -78,7 +79,7 @@ NumericVector TriweightKernelDensity(Eigen::MappedSparseMatrix<double> X){
   };
   return ret;
 }
-
+// [[Rcpp::export]]
 NumericVector EpanechnikovKernelDensity(Eigen::MappedSparseMatrix<double> X){
   int ncol = X.cols();
   NumericVector ret(ncol, 0.0); //vector of size ncol filled with 0.0

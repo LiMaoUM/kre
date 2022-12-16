@@ -7,7 +7,7 @@ Author: Mao Li, Chang Yan, Ping He
 Maintainer: Mao Li <maolee@umich.edu>
 Description: Implementation of kernel ratio estimation (or it can be refered as kernel density estimation with adpative bandwidth)
 License: GPL (>= 3)
-Imports: Rcpp (>= 1.0.9), sf, raster, dplyr, terra
+Imports: Rcpp (>= 1.0.9), sf, raster, dplyr, terra, Matrix, RcppArmadillo, RcppEigen, methods
 LinkingTo: Rcpp, RcppArmadillo, RcppEigen
 RoxygenNote: 7.2.3
 NeedsCompilation: yes
