@@ -1,4 +1,4 @@
-# kre
+# kre: Kernel Ratio Estimation
 
 ## Authors
 Mao Li, Chang Yan, Ping He
