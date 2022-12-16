@@ -13,9 +13,10 @@ Implementation of kernel ratio estimation. Different from kernel density estimat
 There are point of interest and population raster file in the text folder (the extent is city of Columbus). Run following codes (change the file path), you will get the kernel ratio estimation
 
 ```
+library(sf)
+library(raster)
 r = raster("~/test/coraster.tif")
 poi = st_read("~/test/poi/Retail_Facilities.shp")
 poi = st_transform(poi,32119)
 Output = kernelRatioEstimation(r,poi,12,1,12000,500,'gaussian')
-
 ```
