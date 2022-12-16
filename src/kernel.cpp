@@ -16,7 +16,6 @@ typedef MSpMat::InnerIterator InIterMat;
 // number of columns = number of cells
 // each element of the input sparse matrix is the ratio of distance to bandwidth
 
-// [[Rcpp::export("GaussianKernelDensity")]]
 NumericVector GaussianKernelDensity(Eigen::MappedSparseMatrix<double> X){
   int ncol = X.cols();
   NumericVector ret(ncol, 0.0); //vector of size ncol filled with 0.0
@@ -32,7 +31,7 @@ NumericVector GaussianKernelDensity(Eigen::MappedSparseMatrix<double> X){
   return ret;
 }
 
-// [[Rcpp::export("UniformKernelDensity")]]
+
 NumericVector UniformKernelDensity(Eigen::MappedSparseMatrix<double> X){
   int ncol = X.cols();
   NumericVector ret(ncol, 0.0); //vector of size ncol filled with 0.0
@@ -48,7 +47,7 @@ NumericVector UniformKernelDensity(Eigen::MappedSparseMatrix<double> X){
   return ret;
 }
 
-// [[Rcpp::export("QuarticKernelDensity")]]
+
 NumericVector QuarticKernelDensity(Eigen::MappedSparseMatrix<double> X){
   int ncol = X.cols();
   NumericVector ret(ncol, 0.0); //vector of size ncol filled with 0.0
@@ -63,7 +62,8 @@ NumericVector QuarticKernelDensity(Eigen::MappedSparseMatrix<double> X){
   };
   return ret;
 }
-// [[Rcpp::export("TriweightKernelDensity")]]
+
+
 NumericVector TriweightKernelDensity(Eigen::MappedSparseMatrix<double> X){
   int ncol = X.cols();
   NumericVector ret(ncol, 0.0); //vector of size ncol filled with 0.0
